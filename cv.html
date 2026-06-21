@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ye Htut Khaung - CV / Resume</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- General Reset & Variables --- */
+        :root {
+            --sidebar-bg: #eef2f7;
+            --sidebar-text: #2c3e50;
+            --main-bg: #ffffff;
+            --main-text: #333333;
+            --accent-color: #0061ff;
+            --accent-light: #00f2ff;
+            --border-color: #dddddd;
+            --text-muted: #666666;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #f0f2f5;
+            color: var(--main-text);
+            line-height: 1.4;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- Print Control Panel (Web Mode Only) --- */
+        .control-panel {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .control-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .control-btns {
+            display: flex;
+            gap: 12px;
+        }
+
+        .control-btn {
+            padding: 8px 18px;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-family: 'Outfit', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-download {
+            background-color: var(--accent-color);
+            color: #ffffff;
+            border: none;
+        }
+
+        .btn-download:hover {
+            background-color: #004ecc;
+            transform: translateY(-1px);
+        }
+
+        .btn-back {
+            background-color: transparent;
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-back:hover {
+            border-color: #ffffff;
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        /* --- CV Document Wrapper --- */
+        .cv-wrapper {
+            width: 210mm; /* A4 Width */
+            height: 297mm; /* A4 Height */
+            margin: 20px auto;
+            background-color: var(--main-bg);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* --- Left Sidebar (32%) --- */
+        .cv-sidebar {
+            width: 32%;
+            background-color: var(--sidebar-bg);
+            color: var(--sidebar-text);
+            padding: 20px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border-right: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Profile Photo Container */
+        .profile-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 2px;
+        }
+
+        .profile-photo {
+            width: 115px;
+            height: 115px;
+            border-radius: 50%;
+            background-color: #fff;
+            border: 3px solid #ffffff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+            object-fit: cover;
+            object-position: center top;
+            margin-bottom: 6px;
+        }
+
+        /* Sidebar Sections */
+        .sidebar-section {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .sidebar-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #1a1a1a;
+            border-bottom: 1.5px solid var(--accent-color);
+            padding-bottom: 4px;
+            margin-bottom: 3px;
+        }
+
+        /* Contact Details */
+        .contact-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 0.76rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 7px;
+            word-break: break-all;
+            line-height: 1.25;
+        }
+
+        .contact-icon {
+            font-size: 0.85rem;
+            width: 12px;
+            text-align: center;
+            margin-top: 1px;
+        }
+
+        .contact-list a {
+            color: var(--sidebar-text);
+            text-decoration: none;
+        }
+
+        .contact-list a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        /* Detail lists */
+        .detail-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 0.76rem;
+        }
+
+        .detail-list li {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .detail-list span.label {
+            font-weight: 500;
+            color: #555555;
+        }
+
+        .detail-list span.value {
+            font-weight: 600;
+            text-align: right;
+        }
+
+        /* Bullet lists in sidebar */
+        .bullet-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            font-size: 0.76rem;
+            line-height: 1.3;
+        }
+
+        .bullet-list li {
+            position: relative;
+            padding-left: 10px;
+        }
+
+        .bullet-list li::before {
+            content: "•";
+            color: var(--accent-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        /* Language items */
+        .lang-item {
+            font-size: 0.76rem;
+            margin-bottom: 4px;
+            line-height: 1.3;
+        }
+
+        .lang-name {
+            font-weight: 600;
+        }
+
+        .lang-level {
+            color: var(--text-muted);
+            font-size: 0.7rem;
+        }
+
+        /* --- Right Main Column (68%) --- */
+        .cv-main {
+            width: 68%;
+            background-color: var(--main-bg);
+            padding: 24px 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* Header block */
+        .main-header {
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            margin-bottom: 4px;
+        }
+
+        .main-header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #111111;
+            line-height: 1.1;
+        }
+
+        .main-header .title-badge {
+            display: inline-block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-top: 3px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        /* Content block */
+        .content-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .section-header {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #111111;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 3px;
+            margin-bottom: 4px;
+        }
+
+        .objective-text {
+            font-size: 0.8rem;
+            color: var(--main-text);
+            text-align: justify;
+            line-height: 1.4;
+        }
+
+        /* Work Experience Items */
+        .experience-timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .exp-item {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            font-size: 0.82rem;
+        }
+
+        .exp-role-company {
+            font-weight: 700;
+            color: #111111;
+        }
+
+        .exp-role-company span.company {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        .exp-date {
+            font-weight: 500;
+            color: var(--text-muted);
+            font-size: 0.76rem;
+            white-space: nowrap;
+        }
+
+        .exp-achievements {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            font-size: 0.74rem;
+            color: #444444;
+            margin-top: 3px;
+            line-height: 1.35;
+        }
+
+        .exp-achievements li {
+            position: relative;
+            padding-left: 10px;
+            text-align: justify;
+        }
+
+        .exp-achievements li::before {
+            content: "–";
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Tech summary inside main */
+        .tech-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            font-size: 0.74rem;
+            line-height: 1.3;
+        }
+
+        .tech-category strong {
+            color: #111111;
+        }
+
+        .tech-category span {
+            color: #555555;
+        }
+
+        /* --- PDF Print Optimization (@media print) --- */
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+            body {
+                background-color: #ffffff !important;
+                color: #000000 !important;
+            }
+
+            .control-panel {
+                display: none !important;
+            }
+
+            .cv-wrapper {
+                width: 210mm !important;
+                height: 297mm !important;
+                margin: 0 !important;
+                box-shadow: none !important;
+                border: none !important;
+                page-break-after: avoid;
+                page-break-before: avoid;
+            }
+
+            .cv-sidebar {
+                background-color: var(--sidebar-bg) !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+
+            .sidebar-title {
+                border-bottom-color: var(--accent-color) !important;
+            }
+
+            .main-header {
+                border-bottom-color: var(--accent-color) !important;
+            }
+
+            /* Prevent scaling overflow issues on standard A4 */
+            html, body {
+                width: 210mm;
+                height: 297mm;
+                overflow: hidden;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Web Print Control Bar (Hidden when printing) -->
+    <div class="control-panel">
+        <div class="control-title">
+            📄 Ye Htut Khaung - Resume
+        </div>
+        <div class="control-btns">
+            <a href="index.html" class="control-btn btn-back">← Back to Portfolio</a>
+            <button onclick="window.print()" class="control-btn btn-download">Download / Print PDF</button>
+        </div>
+    </div>
+
+    <!-- CV Document Wrapper -->
+    <div class="cv-wrapper">
+        
+        <!-- Left Sidebar Section -->
+        <aside class="cv-sidebar">
+            
+            <!-- Profile Photo -->
+            <div class="profile-container">
+                <img class="profile-photo" src="yehtutkhaung.jpg" alt="Ye Htut Khaung">
+            </div>
+            
+            <!-- Contact Section -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Contact</h3>
+                <ul class="contact-list">
+                    <li class="contact-item">
+                        <span class="contact-icon">📞</span>
+                        <a href="tel:+959751486789">+959 751 486 789</a>
+                    </li>
+                    <li class="contact-item">
+                        <span class="contact-icon">✉️</span>
+                        <a href="mailto:yairhtut35p@gmail.com">yairhtut35p@gmail.com</a>
+                    </li>
+                    <li class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <span>Yangon, Myanmar</span>
+                    </li>
+                    <li class="contact-item">
+                        <span class="contact-icon">🔗</span>
+                        <a href="https://github.com/Yair-Htut-Khaung-SCM" target="_blank">github.com/Yair-Htut-Khaung-SCM</a>
+                    </li>
+                    <li class="contact-item">
+                        <span class="contact-icon">💼</span>
+                        <a href="https://linkedin.com/in/ye-htut-khaung/" target="_blank">linkedin.com/in/ye-htut-khaung</a>
+                    </li>
+                    <li class="contact-item">
+                        <span class="contact-icon">🌐</span>
+                        <a href="https://yair-htut-khaung-scm.github.io/yairhtutkhaung-portfolio/" target="_blank">yair-htut-khaung-scm.github.io</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Personal Details Section -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Personal Details</h3>
+                <ul class="detail-list">
+                    <li>
+                        <span class="label">Date of Birth:</span>
+                        <span class="value">June 28, 2000</span>
+                    </li>
+                    <li>
+                        <span class="label">Gender:</span>
+                        <span class="value">Male</span>
+                    </li>
+                    <li>
+                        <span class="label">Nationality:</span>
+                        <span class="value">Burmese</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Education Section -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Education</h3>
+                <div style="font-size: 0.78rem;">
+                    <p style="font-weight: 700; color: #111111; line-height: 1.2;">Bachelor of Computer Science</p>
+                    <p style="color: #444; font-size: 0.72rem; margin-top: 1px;">University of Computer Studies, Taungoo (UCST)</p>
+                    <p style="color: var(--accent-color); font-weight: 500; font-size: 0.72rem; margin-top: 2px;">Graduated: May 2023</p>
+                </div>
+            </div>
+            
+            <!-- Languages Section -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Languages</h3>
+                <div class="lang-item">
+                    <div class="lang-name">Burmese</div>
+                    <div class="lang-level">Native / Bilingual</div>
+                </div>
+                <div class="lang-item">
+                    <div class="lang-name">Japanese (JLPT N2)</div>
+                    <div class="lang-level">Conversational (Passed Dec 2025)</div>
+                </div>
+                <div class="lang-item">
+                    <div class="lang-name">English</div>
+                    <div class="lang-level">Professional Working Proficiency</div>
+                </div>
+            </div>
+
+            <!-- Personal Skills Section -->
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Personal Skills</h3>
+                <ul class="bullet-list">
+                    <li>Problem Solving & Critical Thinking</li>
+                    <li>Sub/Team Leadership & Mentoring</li>
+                    <li>Flexibility & Communication</li>
+                    <li>Task Estimation & Planning</li>
+                    <li>Japanese Client Correspondence</li>
+                </ul>
+            </div>
+            
+            <!-- Hobbies Section -->
+            <div class="sidebar-section" style="margin-bottom: 0;">
+                <h3 class="sidebar-title">Hobbies</h3>
+                <ul class="bullet-list">
+                    <li>Watching Movies</li>
+                    <li>Gaming</li>
+                    <li>Cooking</li>
+                </ul>
+            </div>
+            
+        </aside>
+        
+        <!-- Right Main Content Section -->
+        <main class="cv-main">
+            
+            <!-- Header -->
+            <header class="main-header">
+                <h1>YE HTUT KHAUNG</h1>
+                <div class="title-badge">Senior Web Engineer & Sub/Team Leader</div>
+            </header>
+            
+            <!-- Professional Objective -->
+            <section class="content-section">
+                <h3 class="section-header">Objective</h3>
+                <p class="objective-text">
+                    Highly skilled Web Developer and Sub/Team Leader with over 4 years of experience building, deploying, and maintaining production-scale web applications. Combines robust full-stack programming (PHP Laravel, Vue.js, WordPress) with hands-on AWS Cloud and DevOps capabilities (Docker, Terraform, CodePipeline). Experienced bilingual professional (JLPT N2) adept at bridging communications with Japanese clients, leading developer teams, and delivering high-quality web solutions with zero downtime.
+                </p>
+            </section>
+            
+            <!-- Work Experience -->
+            <section class="content-section">
+                <h3 class="section-header">Work Experience</h3>
+                <div class="experience-timeline">
+                    
+                    <!-- METATEAM MYANMAR -->
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <span class="exp-role-company">Senior Web Engineer & Sub/Team Leader | <span class="company">METATEAM MYANMAR</span></span>
+                            <span class="exp-date">Feb 2023 - Present</span>
+                        </div>
+                        <ul class="exp-achievements">
+                            <li><strong>Team Coordination & Bridge SE:</strong> Coordinated sprint deliverables across 22+ concurrent systems as a sub/team leader, conducting code reviews and delegating developer tasks. Led requirements alignment directly with Japanese clients in Japanese.</li>
+                            <li><strong>Infrastructure as Code (IaC):</strong> Authored and managed modular Terraform templates to provision and scale AWS resources including RDS Aurora databases, DynamoDB tables, VPCs, and IAM configurations.</li>
+                            <li><strong>CI/CD & Containerization:</strong> Implemented containerized environments with Docker and configured automated AWS CodePipeline CI/CD workflows for secure, repeatable application deployment.</li>
+                            <li><strong>Full-Stack Engineering:</strong> Developed and modernized core features of high-traffic web platforms and CMS systems using PHP Laravel, Phalcon, CakePHP, WordPress, and Vue.js.</li>
+                            <li><strong>Cloud Optimization & Serverless:</strong> Migrated cache structures and blacklists to DynamoDB; maintained serverless workloads on AWS Lambda, upgrading to Node.js 18 runtime environments via AWS SAM.</li>
+                            <li><strong>API Integrations:</strong> Developed robust backend integrations with external APIs including Stripe 3D Secure v2 payment verification and Twilio communications.</li>
+                            <li><strong>Database Performance:</strong> Audited MySQL slow logs, resolved deadlock conflicts, and tuned queries, reducing database-heavy file generation from minutes to under 5 seconds.</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Web Developer Intern -->
+                    <div class="exp-item">
+                        <div class="exp-header">
+                            <span class="exp-role-company">Web Developer & OJT Intern | <span class="company">BIB OJT Training / Freelance</span></span>
+                            <span class="exp-date">Nov 2022 - Feb 2023</span>
+                        </div>
+                        <ul class="exp-achievements">
+                            <li><strong>Application Development:</strong> Developed search filters, data validations, list edits, and automated mailing features using Laravel and jQuery.</li>
+                            <li><strong>QA Testing:</strong> Wrote unit test suites using PHPUnit, documented edge-case test sheets, and validated browser layout compatibility on desktop and mobile platforms.</li>
+                            <li><strong>Database & Sync:</strong> Maintained local database setups using MySQL, resolving schemas and writing clean seeders for testing pipelines.</li>
+                        </ul>
+                    </div>
+                    
+                </div>
+            </section>
+
+            <!-- Technical Arsenal Summary -->
+            <section class="content-section" style="margin-bottom: 0;">
+                <h3 class="section-header">Technical Arsenal</h3>
+                <div class="tech-summary-grid">
+                    <div class="tech-category">
+                        <strong>Programming:</strong> <span>PHP, JavaScript, TypeScript, SQL, Python, Java, HTML/CSS</span>
+                    </div>
+                    <div class="tech-category">
+                        <strong>Frameworks & CMS:</strong> <span>Laravel, Vue.js, Phalcon, CakePHP, WordPress, Nuxt.js, JQuery, Bootstrap</span>
+                    </div>
+                    <div class="tech-category">
+                        <strong>Cloud & Infrastructure:</strong> <span>AWS (EC2, ECS, Lambda, RDS, S3, CodePipeline, DynamoDB, SES, CloudWatch), Linux Administration</span>
+                    </div>
+                    <div class="tech-category">
+                        <strong>DevOps & Tools:</strong> <span>Terraform, Docker, Git / GitHub / Bitbucket, Ansible, AWS SAM</span>
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+    </div>
+
+    <!-- Script to trigger print on load if parameter is present -->
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('print') === 'true') {
+            window.addEventListener('load', () => {
+                setTimeout(() => {
+                    window.print();
+                }, 500); // Small timeout to ensure font loading
+            });
+        }
+    </script>
+</body>
+</html>
